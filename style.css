@@ -1,5 +1,5 @@
 :root {
-  --background: #272727;
+  --background: 40, 40, 40;
   --text-color: #ffffff;
 }
 
@@ -14,14 +14,19 @@
   src: url("/assets/mohave-bold.woff2"), url("/assets/mohave-bold.woff");
 }
 
+@font-face {
+  font-family: Space-Grotesk;
+  src: url("/assets/spacegrotesk-medium.otf");
+}
+
 body {
-  font-family: Mohave;
-  background-color: var(--background);
+  font-family: Space-Grotesk;
+  background-color: rgb(var(--background));
   color: var(--text-color);
   line-height: 1.25;
 
   margin: 160px auto 80px auto;
-  width: 800px;
+  width: 100%;
 }
 
 header {
@@ -33,6 +38,9 @@ header {
   justify-content: space-between;
   padding: 24px 48px 24px 48px;
   align-items: center;
+  background-color: rgba(var(--background), 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(16px);
 }
 
 h1 {
@@ -53,4 +61,47 @@ text {
 text.city {
   font-size: 32px;
   font-weight: 700;
+}
+
+circle {
+  fill: rgb(var(--background));
+  opacity: 0;
+  transition: opacity 0.5s;
+  transition-delay: 0s;
+}
+
+text.temp {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+path {
+  stroke: rgb(var(--background));
+  fill: none;
+  stroke-width: 4px;
+  transition: opacity 1s;
+}
+
+g.data-point:hover text.temp {
+  opacity: 1;
+}
+
+g.data-point:hover circle {
+  opacity: 1;
+  transition: opacity 0.5s;
+  transition-delay: 0.3s;
+}
+
+g.data-point:hover path {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+select {
+  font-family: sans-serif;
+  height: 25px;
 }
